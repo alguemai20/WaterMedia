@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Meu Site de Download</title>
+</head>
+<body>
+  <h1>Enviar Arquivo</h1>
+  <form action="upload.php" method="POST" enctype="multipart/form-data">
+    <input type="file" name="arquivo" required>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <h2>Arquivos Disponíveis</h2>
+  <ul>
+    <?php
+    $dir = "downloads/";
+    $files = array_diff(scandir($dir), ['.', '..']);
+    foreach ($files as $file) {
+        echo "<li><a href='$dir$file' download>$file</a></li>";
+    }
+    ?>
+  </ul>
+</body>
+</html>
